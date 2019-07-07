@@ -1,0 +1,12 @@
+[package]
+name = "child_chain"
+version = "0.1.0"
+authors = ["akihito.nakano <sora.akatsuki@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+ethereum-types = "0.5.2"
+ethabi = "7.0.0"
+tokio = { version = "0.1" }
+futures = "0.1.26"
+event-watcher = { path = "../../plasma-rust-framework/event-watcher" }
