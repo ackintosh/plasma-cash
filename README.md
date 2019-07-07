@@ -5,6 +5,13 @@ $ ganache-cli --mnemonic 'candy maple cake sugar pudding cream honey rich smooth
 $ truffle migrate
 ```
 
+### Run child chain
+
+```sh
+$ cd child_chain
+$ cargo run
+```
+
 ### Deposit
 
 ```sh
