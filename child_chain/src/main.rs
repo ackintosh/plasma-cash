@@ -3,8 +3,10 @@ extern crate futures;
 
 use ethereum_types::Address;
 use ethabi::{Event, EventParam, ParamType};
-use event_watcher::event_db::DefaultEventDb;
+use event_watcher::event_db::EventDbImpl;
 use event_watcher::event_watcher::EventWatcher;
+use plasma_db::impls::kvs::CoreDbMemoryImpl;
+use plasma_db::traits::DatabaseTrait;
 
 fn main() {
     let address: Address = match "dDA6327139485221633A1FcD65f4aC932E60A2e1".parse() {
@@ -36,7 +38,8 @@ fn main() {
         }
     ];
 
-    let db = DefaultEventDb::new();
+    let kvs = CoreDbMemoryImpl::open("kvs");
+    let db = EventDbImpl::from(kvs);
     let mut watcher = EventWatcher::new("http://localhost:8545", address, abi, db);
 
     watcher.subscribe(Box::new(|log| {
